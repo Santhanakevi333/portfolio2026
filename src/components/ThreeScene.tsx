@@ -35,7 +35,7 @@ export const ThreeScene: React.FC = () => {
     const TAN = Math.tan((camera.fov * Math.PI) / 360);
 
     const small = Math.min(window.innerWidth, window.innerHeight) < 600;
-    const N = small ? 2400 : 5200;
+    const N = small ? 1400 : 2600;
     const X = 9.5;
     const Y = 5.8;
     const Z0 = -3.2;
@@ -74,7 +74,7 @@ export const ThreeScene: React.FC = () => {
       new THREE.LineBasicMaterial({
         vertexColors: true,
         transparent: true,
-        opacity: 0.8,
+        opacity: 0.5,
         blending: THREE.AdditiveBlending,
         depthWrite: false,
       })
@@ -440,7 +440,7 @@ export const ThreeScene: React.FC = () => {
       const w2 = mw[2];
       const dom = w0 >= w1 && w0 >= w2 ? 0 : w1 >= w2 ? 1 : 2;
       const sp = dt * spd;
-      const tail = 0.24 * Math.min(3, spd);
+      const tail = 0.18 * Math.min(2.4, spd);
 
       // Process shockwave bursts
       for (let b = bursts.length - 1; b >= 0; b--) {
@@ -564,7 +564,7 @@ export const ThreeScene: React.FC = () => {
         }
 
         const fade = Math.min(1, age[i] * 1.5, Math.max(0, (life[i] - age[i]) * 1.5));
-        const br = 0.75 * fade;
+        const br = 0.52 * fade;
         const o = i * 6;
 
         pos[o] = x;

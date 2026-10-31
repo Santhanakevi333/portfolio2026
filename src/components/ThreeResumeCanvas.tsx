@@ -761,16 +761,6 @@ export const ThreeResumeCanvas: React.FC<ThreeResumeCanvasProps> = ({
       }`}
       title="Click and drag to rotate the 3D Resume in space"
     >
-      {/* 3D Viewport Controls Bar */}
-      <div className="absolute top-3 left-3 right-3 z-20 flex flex-wrap items-center justify-between gap-2 pointer-events-none">
-        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#091526]/80 border border-line backdrop-blur-md text-[11px] font-mono text-accent uppercase tracking-wider">
-          <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-          <span>3D Interactive Hologram</span>
-        </div>
-
-       
-      </div>
-
       {/* Bottom Hint Banner */}
       <div className="absolute bottom-3 left-3 right-3 z-20 flex items-center justify-between pointer-events-none text-[11px] font-mono text-muted/75 px-3 py-1.5 rounded-md bg-[#091526]/60 backdrop-blur-sm border border-line/60">
         <span className="flex items-center gap-1.5">

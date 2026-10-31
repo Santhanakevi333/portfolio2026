@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { usePortfolio } from '../context/PortfolioContext';
 import { scrambleText } from '../utils/textScramble';
 import { SkillCloud } from './SkillCloud';
@@ -35,6 +35,24 @@ export const Skills: React.FC = () => {
   const { prefersReducedMotion } = usePortfolio();
   const [eyebrow, setEyebrow] = useState('Skills');
   const sectionRef = useRef<HTMLElement | null>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   let watermarkOffset = 0;
   if (sectionRef.current) {
@@ -70,8 +88,8 @@ export const Skills: React.FC = () => {
         <h2>Tools I use every week</h2>
       </div>
 
-      {/* Skills wrap */}
-      <div className="skills-wrap">
+      {/* Skills wrap inside Glass Card */}
+      <div className={`skills-wrap ${inView ? 'in' : ''}`}>
         <div className="skills">
           {SKILL_CATEGORIES.map((cat, idx) => (
             <div key={idx} className="skill">

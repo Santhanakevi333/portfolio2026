@@ -3,8 +3,6 @@ import {
   Download,
   Eye,
   Check,
-  Copy,
-  Printer,
   X,
   Compass,
   Layers,
@@ -19,43 +17,6 @@ import { ThreeResumeCanvas, Resume3DMode } from './ThreeResumeCanvas';
 
 const RESUME_PDF_PATH = '/Santhana_Keveen_A_Resume.pdf';
 
-const RESUME_SUMMARY_TEXT = `SANTHANA KEVEEN A
-Front-End Web Developer (React JS)
-Phone: +91-7695971980 | Email: kevinkevi2003@gmail.com
-LinkedIn: https://linkedin.com/in/kevin003 | GitHub: https://github.com/Santhanakevi333
-Location: Coimbatore, Tamil Nadu
-
-PROFESSIONAL SUMMARY:
-Front-End Web Developer with 1+ year of professional experience building production React.js and TypeScript applications for a renewable energy company. Delivered four live forecasting platforms with interactive dashboards, real-time weather maps, and custom WebGL visualizations. Strong in REST API integration, API optimization (pagination, caching), and responsive UI with Tailwind CSS.
-
-TECHNICAL SKILLS:
-- Languages: JavaScript (ES6+), TypeScript, HTML5, CSS3
-- Frontend: React.js, Tailwind CSS, Zustand, Recharts, Responsive Design, Web Workers
-- Mapping and Visualization: MapLibre GL JS, WebGL 2, GLSL Shaders, GeoJSON, OpenStreetMap
-- Backend and APIs: REST APIs, OpenAPI, Node.js, Express.js, MongoDB, Supabase, Gemini API, Caching
-- Tools: Git, GitHub, Vite, Vitest, VS Code, Chrome DevTools
-- Spoken Languages: English (Fluent), Tamil
-
-PROFESSIONAL EXPERIENCE:
-Junior Web Developer — Leap Green Energy Pvt. Ltd., Coimbatore (May 2025 – Present)
-- Built front-end applications for four live renewable energy platforms: leapmeteo.com (weather), leapvayu.com (state-wise wind forecast), leapsurya.com (solar forecast), and leapsakthi.com (demand forecast).
-- Developed data-heavy dashboards using React.js, Tailwind CSS, and Recharts to visualize wind, solar, and demand forecast data.
-- Integrated REST APIs with a type-safe client generated from OpenAPI specs, using request cancellation to keep map interactions responsive.
-- Optimized backend APIs by reducing response times and adding pagination and caching; built Node.js endpoints where needed.
-- Collaborated using Git and GitHub to deliver and maintain production releases.
-
-KEY PROJECTS:
-- Leap Meteo – Interactive Weather Forecasting Platform (leapmeteo.com)
-  Stack: React, TypeScript, MapLibre GL JS, WebGL 2, GLSL, Zustand, Vite, Vitest
-- Bulk Mail App (MERN)
-  Stack: MongoDB, Express.js, React.js, Node.js, Nodemailer, Tailwind CSS
-- FitTracker Pro – AI-Powered Fitness Analytics Platform
-  Stack: React 19, Vite, Tailwind CSS v4, Google Gemini API, Supabase (PostgreSQL), Vercel
-
-EDUCATION & CERTIFICATIONS:
-- B.E. Cyber Security, Mahendra Engineering College, Namakkal (2020 – 2024, CGPA: 8.25)
-- Full Stack MERN Development – Error Makes Clever (Certificate ID: EMCFSWDB1235)`;
-
 export const Resume: React.FC = () => {
   const { prefersReducedMotion, triggerBurst } = usePortfolio();
   const [eyebrow, setEyebrow] = useState('Curriculum Vitae');
@@ -63,7 +24,6 @@ export const Resume: React.FC = () => {
   const [autoRotate, setAutoRotate] = useState<boolean>(true);
   const [zoomLevel, setZoomLevel] = useState<number>(1);
   const [modalZoom, setModalZoom] = useState<number>(1);
-  const [copied, setCopied] = useState<boolean>(false);
   const [isInspectorOpen, setIsInspectorOpen] = useState<boolean>(false);
   const [downloadSuccess, setDownloadSuccess] = useState<boolean>(false);
 
@@ -91,22 +51,6 @@ export const Resume: React.FC = () => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  };
-
-  // Handle Print ATS Version
-  const handlePrint = () => {
-    window.print();
-  };
-
-  // Handle Copy Text Summary
-  const handleCopySummary = (e: React.MouseEvent<HTMLElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    triggerBurst(rect.left + rect.width / 2, rect.top + rect.height / 2);
-
-    navigator.clipboard.writeText(RESUME_SUMMARY_TEXT).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2400);
-    });
   };
 
   // Close inspector on ESC key
@@ -242,29 +186,6 @@ export const Resume: React.FC = () => {
           >
             <Eye className="w-4 h-4 text-accent" />
             <span>Full View</span>
-          </button>
-
-          {/* Print ATS Version */}
-          
-
-          {/* Copy Summary Text */}
-          <button
-            type="button"
-            onClick={handleCopySummary}
-            className="btn inline-flex items-center justify-center gap-2 px-4 py-3.5 rounded-md border border-line bg-panel/80 hover:border-accent text-muted hover:text-fg font-mono text-xs uppercase tracking-wider transition-all hover:bg-panel"
-            title="Copy Text to Clipboard"
-          >
-            {copied ? (
-              <>
-                <Check className="w-4 h-4 text-emerald-400" />
-                <span className="text-emerald-400">Copied!</span>
-              </>
-            ) : (
-              <>
-                <Copy className="w-4 h-4" />
-                <span>Copy Text</span>
-              </>
-            )}
           </button>
         </div>
       </div>
